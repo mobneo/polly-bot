@@ -1,0 +1,18 @@
+services:
+  polymarket-cli:
+    build: .
+    container_name: polymarket-cli
+    env_file:
+      - .env
+    environment:
+      - POLYMARKET_PRIVATE_KEY=${POLYMARKET_PRIVATE_KEY}
+      - POLYMARKET_SIGNATURE_TYPE=${POLYMARKET_SIGNATURE_TYPE:-proxy}
+      - RUST_LOG=${RUST_LOG:-info}
+    volumes:
+      - polymarket-config:/root/.config/polymarket
+      - ./scripts:/scripts:ro
+    stdin_open: true
+    tty: true
+
+volumes:
+  polymarket-config:
