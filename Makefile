@@ -1,4 +1,7 @@
-.PHONY: build up down shell
+.PHONY: start build up down shell
+
+start:
+	docker-compose up -d --build
 
 build:
 	docker-compose build
